@@ -54,6 +54,8 @@ def download_images(url):
             try:
                 response = requests.get(image_url)
                 if response.status_code == 200:
+                    if os.path.exists(os.path.join('images', title)) == False:
+                        os.mkdir(os.path.join('images', title))
                     filename = os.path.join('images', f"{title}/{i}.jpg")
                     with open(filename, 'wb') as f:
                         f.write(response.content)
